@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-
+import Snackbar from '@mui/material/Snackbar';
 type UpdateProps = {
   params: {
     id: string
@@ -12,6 +12,7 @@ export default function Update(props:UpdateProps){
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const router = useRouter();
+  const [open, setOpen] = useState(false);
   useEffect(()=>{
     fetch('http://localhost:9999/page/'+props.params.id)
       .then(resp=>resp.json())
@@ -31,8 +32,8 @@ export default function Update(props:UpdateProps){
       body:JSON.stringify({title, body})
     })
     const result = await resp.json();
-    router.push('/read/'+result.id);
     router.refresh();
+    setOpen(true);
   }
   return <div>
     <h2>Update</h2>
@@ -53,6 +54,12 @@ export default function Update(props:UpdateProps){
           value={body}></textarea>
       </p>
      <p><input type="submit" value="update" /></p>
+     <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={()=>{}}
+        message="수정 됨"
+      />
     </form>
   </div>
 }
