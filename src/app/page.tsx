@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <h2>Welcome</h2>
-      Hello Nextjs!!
+      Hello Nextjs!! login 기능 추가 됨
     </div>
   );
 }
