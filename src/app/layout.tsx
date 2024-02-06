@@ -12,8 +12,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const resp = await fetch('http://localhost:9999/page');
+  console.log('RootLayout')
+  const resp = await fetch('http://localhost:9999/page',{
+    next:{revalidate:0}
+  });
   const data = await resp.json();
+  console.log('data', data);
   return (
     <html lang="en">
       <body>

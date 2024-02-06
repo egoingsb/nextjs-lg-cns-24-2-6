@@ -20,6 +20,7 @@ export default function Create(){
     });
     const result = await resp.json();
     router.push('/read/'+result.id);
+    router.refresh();
   }
   return (
   <div>
